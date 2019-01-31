@@ -42,11 +42,7 @@ public class ServerMsgHandler extends ChannelInboundHandlerAdapter {
 
 
             Message message = new Message(Constants.SERVER, new Date(), reply);
-            ByteBuf buffer = ctx.alloc().buffer();
-            String content = Utils.encodeMsg(message);
-            buffer.writeBytes(content.getBytes(StandardCharsets.UTF_8));
-
-            ctx.writeAndFlush(buffer);
+            ctx.writeAndFlush(message);
         } finally {
             ReferenceCountUtil.release(msg1);
         }

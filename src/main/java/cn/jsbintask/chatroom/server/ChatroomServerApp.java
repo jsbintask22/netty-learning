@@ -24,7 +24,7 @@ public class ChatroomServerApp {
                     .childHandler(new ChannelInitializer() {
                         @Override
                         protected void initChannel(Channel ch) throws Exception {
-                            ch.pipeline().addLast(new ServerTransferMsgHandler(), new ServerMsgHandler());
+                            ch.pipeline().addLast(new MessageEncoder(), new ServerTransferMsgHandler(), new ServerMsgHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 1024 * 10)
