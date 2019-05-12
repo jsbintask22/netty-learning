@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket chat</title>
+</head>
+<body>
+<input type="text" id="message"/>
+<button id="send" onclick="sendMsg()">Send</button>
+<hr/>
+received msg: <br/>
+<div id="receivedMsg">
+
+</div>
+</body>
+<script>
+    window.chat = {
+        websocket: null,
+        init: function () {
+            if (window.WebSocket) {
+                chat.websocket = new WebSocket("ws://localhost:8080/ws");
+                chat.websocket.onopen = function () {
+                    console.log("websocket opened.")
+                };
+                chat.websocket.onmessage = function (msg) {
+                    console.log("received msg: " + msg);
+                    var receivedMsg = document.getElementById("receivedMsg");
+                    receivedMsg.innerText = receivedMsg.innerText + msg.data + "\n";
+                };
+                chat.websocket.onerror = function (error) {
+                    console.log("websocket error " + error);
+                };
+                chat.websocket.onclose = function () {
+                    console.log("websocket closed.", chat.websocket);
+                }
+            } else {
+                alert("sorry, your browser is not support websocket.");
+            }
+        }
+    };
+
+    window.onload = function () {
+        window.chat.init();
+    };
+
+    function sendMsg() {
+        var msg = document.getElementById("message");
+        window.chat.websocket.send(msg.value);
+    }
+</script>
+</html>
