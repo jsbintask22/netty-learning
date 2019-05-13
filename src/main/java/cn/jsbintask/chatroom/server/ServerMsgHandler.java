@@ -8,7 +8,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -26,7 +25,6 @@ public class ServerMsgHandler extends ChannelInboundHandlerAdapter {
         ByteBuf buffer = ctx.alloc().buffer();
         String content = Utils.encodeMsg(message);
         buffer.writeBytes(content.getBytes());
-
         ctx.writeAndFlush(buffer);
     }
 
