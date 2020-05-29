@@ -1,4 +1,4 @@
-package cn.jsbintask.aio.example;
+package cn.jsbintask.nio.example;
 
 import lombok.SneakyThrows;
 

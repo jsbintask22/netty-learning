@@ -1,6 +1,5 @@
-package cn.jsbintask.aio.example;
+package cn.jsbintask.nio.example;
 
-import io.netty.buffer.ByteBuf;
 import lombok.SneakyThrows;
 
 import java.io.FileOutputStream;
