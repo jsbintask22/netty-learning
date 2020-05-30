@@ -1,0 +1,6 @@
+1. jdk原生nio的Buffer使用
+2. jdk原生的nio channel使用
+3. jdk原生的nio网络编程
+4. jdk原生的reactor编程模型（使用selector） 聊天室
+5. 零拷贝使用案例  文件上传
+6. netty 的变成模型（3中reactor使用案例   线程池的添加时机）
