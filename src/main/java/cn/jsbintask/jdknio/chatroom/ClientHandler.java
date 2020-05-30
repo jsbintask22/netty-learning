@@ -1,4 +1,4 @@
-package cn.jsbintask.nio.chatroom;
+package cn.jsbintask.jdknio.chatroom;
 
 import lombok.SneakyThrows;
 
@@ -78,21 +78,4 @@ public class ClientHandler {
         }
     }
 
-    @SneakyThrows
-    private String retrieveServerMsg(SelectionKey selectionKey) {
-        SocketChannel client = (SocketChannel) selectionKey.channel();
-        ByteBuffer buffer = (ByteBuffer) selectionKey.attachment();
-        int len = client.read(buffer);
-        if (len == 0) {
-            return "";
-        }
-        buffer.flip();
-        byte[] data = new byte[buffer.remaining()];
-        int index = 0;
-        while (len != index) {
-            data[index++] = buffer.get();
-        }
-        buffer.clear();
-        return new String(data, StandardCharsets.UTF_8);
-    }
 }

@@ -1,4 +1,4 @@
-package cn.jsbintask.nio.chatroom;
+package cn.jsbintask.jdknio.chatroom;
 
 import lombok.Data;
 import lombok.SneakyThrows;
