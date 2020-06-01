@@ -3,4 +3,6 @@
 3. jdk原生的nio网络编程
 4. jdk原生的reactor编程模型（使用selector） 聊天室
 5. 零拷贝使用案例  文件上传
-6. netty 的变成模型（3中reactor使用案例   线程池的添加时机）.
+6. netty 的演变模型（3中reactor使用案例   线程池的添加时机）.
+7. netty的启动源码（对照之前jdk的写法分析） NioEventLoopGroup 中的成员变量分析（线程池）
+8. ChannelHandlerContext和ChannelPipeLine以及Channel的关系
