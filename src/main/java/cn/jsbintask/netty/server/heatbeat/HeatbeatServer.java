@@ -14,9 +14,10 @@ import lombok.SneakyThrows;
 /**
  * @author jianbin
  * @date 2020/6/2 10:37
- *
+ * <p>
  * 用于处理 空闲事件  读 写 读写空闲
  */
+@ChannelHandler.Sharable
 public class HeatbeatServer extends ChannelInboundHandlerAdapter {
 
     @SneakyThrows
@@ -40,7 +41,8 @@ public class HeatbeatServer extends ChannelInboundHandlerAdapter {
                             pipeline.addLast("logHandler", new LoggingHandler(LogLevel.TRACE))
                                     // 读空闲 3s  写空闲 5s  读写空闲  7s
                                     .addLast("idleHandler", new IdleStateHandler(3, 5, 7))
-                                    .addLast("heatbeat", tcpServer);
+                                    .addLast("heatbeat", tcpServer)
+                                    .addLast(new Handler2());
                         }
                     });
 
