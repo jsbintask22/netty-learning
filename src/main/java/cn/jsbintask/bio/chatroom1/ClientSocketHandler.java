@@ -1,4 +1,4 @@
-package cn.jsbintask.netty.server.chatroomsocketio.client;
+package cn.jsbintask.bio.chatroom1;
 
 import java.io.OutputStream;
 import java.net.InetSocketAddress;

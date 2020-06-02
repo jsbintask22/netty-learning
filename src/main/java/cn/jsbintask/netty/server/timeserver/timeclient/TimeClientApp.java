@@ -1,4 +1,4 @@
-package cn.jsbintask.netty.server.timeclient;
+package cn.jsbintask.netty.server.timeserver.timeclient;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
