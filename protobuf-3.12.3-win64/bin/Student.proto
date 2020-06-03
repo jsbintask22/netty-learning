@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_outer_classname = "StudentProto";
+
+message Student {
+    int32 id = 1;
+    string username = 2;
+    repeated string emails = 4;
+}

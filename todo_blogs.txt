@@ -6,3 +6,6 @@
 6. netty 的演变模型（3中reactor使用案例   线程池的添加时机）.
 7. netty的启动源码（对照之前jdk的写法分析） NioEventLoopGroup 中的成员变量分析（线程池）
 8. ChannelHandlerContext和ChannelPipeLine以及Channel的关系
+9. 使用netty自带的编码解码器编写一个聊天室
+10. 在9的基础上加入私聊功能
+11. 在10的基础上加入protobuf的反序列化，提高效率

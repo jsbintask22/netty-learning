@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_outer_classname = "ChatMessageProto";
+option optimize_for = SPEED;
+
+message ChatMessage {
+    enum MsgType {
+        GLOBAL = 0;
+        PRIVATE = 1;
+        GROUP = 2;
+        SERVER_INFO = 3;
+    }
+
+    MsgType msgType = 1 [default GLOBAL];
+    User from = 2;
+    optional User to = 3;
+    string content = 4;
+}
+
+message User {
+    string username = 1;
+    string address = 2;
+}
