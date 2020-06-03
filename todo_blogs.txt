@@ -9,3 +9,5 @@
 9. 使用netty自带的编码解码器编写一个聊天室
 10. 在9的基础上加入私聊功能
 11. 在10的基础上加入protobuf的反序列化，提高效率
+12. netty在解码过程中的拆包，粘包（由于不知道传输过程是否会一次性传过来一个协议的数据）ByteToMessageDecoder
+13. handler执行顺序，结合12  分析 入站， 出站 代码， MessageToByteEncoder
