@@ -56,13 +56,13 @@ public class TcpServer extends SimpleChannelInboundHandler<ChatMessageProto.Chat
             return "'" + u.getUsername() + "'(" + u.getAddress() + ")";
         }).collect(Collectors.joining(", "));
 
-        ctx.writeAndFlush(ChatMessageProto.ChatMessage.newBuilder()
+        channel.writeAndFlush(ChatMessageProto.ChatMessage.newBuilder()
                 .setContent(msg1)
                 .setMsgType(ChatMessageProto.ChatMessage.MsgType.GLOBAL)
                 .build());
 
         // 告诉其他用户当前用户上线了
-        String msg = printMsg(user.getUsername() + " 上线了(" + userChannelMap.size() + ")");
+        String msg = printMsg(user.getUsername() + user.getAddress() + " 上线了(" + userChannelMap.size() + ")");
         System.err.println(msg);
         userChannelMap.values().forEach(c -> {
             if (c.get("channel") != channel) {
@@ -77,9 +77,10 @@ public class TcpServer extends SimpleChannelInboundHandler<ChatMessageProto.Chat
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        userChannelMap.remove(channel.id());
+        Map<String, Object> info = userChannelMap.remove(channel.id());
+        ChatMessageProto.User user = (ChatMessageProto.User) info.get("user");
 
-        String msg = printMsg(channel.remoteAddress() + " 下线了");
+        String msg = printMsg(user.getUsername() + " 下线了");
         System.err.println(msg);
         userChannelMap.values().forEach(c -> {
             Channel ch = (Channel) c.get("channel");
@@ -103,7 +104,7 @@ public class TcpServer extends SimpleChannelInboundHandler<ChatMessageProto.Chat
             // 转发给其他人
             sendToAnother(channel, msg.getFrom().getUsername() + ": " + msg.getContent());
         }
-        System.err.println("收到" + msg.getFrom().getUsername() + "消息: " + msg);
+        System.err.println(printMsg("收到" + msg.getFrom().getUsername() + "消息: " + msg.getContent()));
     }
 
     private void sendToAnother(Channel channel, String msg) {
@@ -134,7 +135,13 @@ public class TcpServer extends SimpleChannelInboundHandler<ChatMessageProto.Chat
         }).findFirst();
 
         if (first.isPresent()) {
-            ((Channel) first.get().get("channel")).writeAndFlush(printMsg(msg.getFrom().getUsername() + ": " + msg.getContent()));
+            ((Channel) first.get().get("channel")).writeAndFlush(
+                    ChatMessageProto.ChatMessage.newBuilder()
+                            .setFrom(msg.getFrom())
+                            .setContent(printMsg(msg.getFrom().getUsername() + ":" + msg.getContent()))
+                            .setMsgType(ChatMessageProto.ChatMessage.MsgType.PRIVATE)
+                            .build()
+            );
         } else {
             System.err.println("没找到对应的收件人. " + msg);
         }
