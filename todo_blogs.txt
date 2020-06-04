@@ -11,3 +11,6 @@
 11. 在10的基础上加入protobuf的反序列化，提高效率
 12. netty在解码过程中的拆包，粘包（由于不知道传输过程是否会一次性传过来一个协议的数据）ByteToMessageDecoder
 13. handler执行顺序，结合12  分析 入站， 出站 代码， MessageToByteEncoder
+13. writeAndFlush在 channel和ChannelHandlerContext中的区别 (调换 Encoder的位置，找出区别， 最后debug到HeadContext 的flush方法）
+以及执行过程（executemask的作用）  writeAndFlush 源码执行流程
+14. channel最后flush的时候调用javaChannel() write 生成了一个DirectByteBuff 可以提高效率
