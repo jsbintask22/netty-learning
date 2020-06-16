@@ -14,3 +14,10 @@
 13. writeAndFlush在 channel和ChannelHandlerContext中的区别 (调换 Encoder的位置，找出区别， 最后debug到HeadContext 的flush方法）
 以及执行过程（executemask的作用）  writeAndFlush 源码执行流程
 14. channel最后flush的时候调用javaChannel() write 生成了一个DirectByteBuff 可以提高效率
+16. EventExecutorGroup  EventExecutor
+                        EventLoopGroup  EventLoop  SingleThreadEventLoop  NioEventLoop 关系
+
+17. debug NioEventLoop的源码run (processSelectedKeys(注意finally块有一个runAllTasks方法，确保完成所有channel事件后，在从这个线程执行所有的task任务）->
+processSelectedKeysPlain)，跟踪ChannelPipeline的初始read() 触发是怎么开始的
+
+18. NioServerSocketChannel是如何被创建的以及是如何真正绑定java channel的

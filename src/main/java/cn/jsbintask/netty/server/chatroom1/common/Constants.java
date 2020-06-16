@@ -1,4 +1,4 @@
-package cn.jsbintask.netty.server.chatroom.common;
+package cn.jsbintask.netty.server.chatroom1.common;
 
 /**
  * @author jsbintask@gmail.com

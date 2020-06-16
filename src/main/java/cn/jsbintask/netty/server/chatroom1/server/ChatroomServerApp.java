@@ -1,4 +1,4 @@
-package cn.jsbintask.netty.server.chatroom.server;
+package cn.jsbintask.netty.server.chatroom1.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;

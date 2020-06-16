@@ -1,7 +1,7 @@
-package cn.jsbintask.netty.server.chatroom.server;
+package cn.jsbintask.netty.server.chatroom1.server;
 
-import cn.jsbintask.netty.server.chatroom.common.Message;
-import cn.jsbintask.netty.server.chatroom.common.Utils;
+import cn.jsbintask.netty.server.chatroom1.common.Message;
+import cn.jsbintask.netty.server.chatroom1.common.Utils;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
