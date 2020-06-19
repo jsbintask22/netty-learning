@@ -20,7 +20,6 @@ public class FileChannel_Example5_Copy3 {
         // write
         FileChannel writeChannel = new FileOutputStream("file_channel_example_copy.txt").getChannel();
 
-
         readChannel.transferTo(0, fis.available(), writeChannel);
 
         writeChannel.transferFrom(readChannel, fis.available(), fis.available());

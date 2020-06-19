@@ -3,9 +3,12 @@ package cn.jsbintask.jdknio.example;
 import lombok.SneakyThrows;
 
 import java.io.FileOutputStream;
+import java.net.URI;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author jianbin
@@ -14,8 +17,14 @@ import java.nio.charset.StandardCharsets;
 public class FileChannel_Example1 {
     @SneakyThrows
     public static void main(String[] args) {
+        // 方法1， 适合文件不存在的情况
         FileOutputStream fos = new FileOutputStream("file_channel_example.txt");
         FileChannel fileChannel = fos.getChannel();
+
+        // 方法2，
+       /* FileChannel fileChannel = FileChannel.open(Paths.get("", "file_channel_example.txt"),
+                StandardOpenOption.WRITE,
+                StandardOpenOption.READ);*/
 
         String src = "hello from jsbintask.cn zh中文\n...test";
 
