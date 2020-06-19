@@ -21,3 +21,4 @@
 processSelectedKeysPlain)，跟踪ChannelPipeline的初始read() 触发是怎么开始的
 
 18. NioServerSocketChannel是如何被创建的以及是如何真正绑定java channel的
+19. to be continue...
