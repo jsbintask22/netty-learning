@@ -1,6 +1,10 @@
 介绍了nio中的channel概念以及FileChannel的使用: (netty极简教程（三）： nio Channel意义以及FileChannel使用)[https://www.jianshu.com/p/b8d08fa240e2],
 接下来介绍下nio中的网络channel，SocketChannel以及Selector
 
+-----
+示例源码： [https://github.com/jsbintask22/netty-learning](https://github.com/jsbintask22/netty-learning)
+
+
 ## SocketChannel
 ![](https://gitee.com/jsbintask/blog-static/raw/master/netty/jdk-nio/4.png)
 
@@ -13,7 +17,7 @@
 `选项用于标识发送缓冲池的大小，只有发送的字节大小达到这个值时才会真正的发送字节流
 
 2. SelectableChannel接口主要有两个作用；
-   *. 该连接支持多路复用，换句话说，它支持注册到多个`Selector`（后面介绍）上，后面可由selector询问操作系统是否有注册的事件（连接，读，写）发生，这样一个selector便可管理多个channel。
+   * 该连接支持多路复用，换句话说，它支持注册到多个`Selector`（后面介绍）上，后面可由selector询问操作系统是否有注册的事件（连接，读，写）发生，这样一个selector便可管理多个channel。
    方法`SelectionKey register(Selector sel, int ops)`注册selector以及通知事件，`SelectionKey`是一个注册抽象类，可理解为连接Channel以及Selector
    ，并且可使用该对象从selector上取消注册:`void cancel();`
    
@@ -26,7 +30,7 @@
    ![](https://gitee.com/jsbintask/blog-static/raw/master/netty/jdk-nio/6.png)
 
    
-   *. 该channel支持异步，连接，读操作不会再阻塞当前线程:`SelectableChannel configureBlocking(boolean block)`
+   * 该channel支持异步，连接，读操作不会再阻塞当前线程:`SelectableChannel configureBlocking(boolean block)`
    
    ----
    值得注意的是，如果一个channel要注册至Selector，它必须是异步的。
