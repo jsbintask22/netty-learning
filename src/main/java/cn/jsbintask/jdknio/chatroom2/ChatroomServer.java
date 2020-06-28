@@ -1,4 +1,4 @@
-package cn.jsbintask.jdknio.chatroom;
+package cn.jsbintask.jdknio.chatroom2;
 
 import lombok.SneakyThrows;
 
@@ -6,7 +6,7 @@ import lombok.SneakyThrows;
  * @author jianbin
  * @date 2020/5/29 15:03
  *
- * 单Reactor多线程模型
+ * 多Reactor多线程模型
  */
 public class ChatroomServer {
     @SneakyThrows
