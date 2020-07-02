@@ -21,4 +21,7 @@
 processSelectedKeysPlain)，跟踪ChannelPipeline的初始read() 触发是怎么开始的
 
 18. NioServerSocketChannel是如何被创建的以及是如何真正绑定java channel的
-19. to be continue...
+19. 在linux系统中展示为什么 socket时阻塞的，以及带来的问题， nio在linux系统中是什么样的 为什么不会阻塞（kernel)
+20. linux中展示网络传输过程（五层分别做了什么）
+21. tcp三次握手，四次挥手 抓包查看 状态扩展
+21. to be continue...
