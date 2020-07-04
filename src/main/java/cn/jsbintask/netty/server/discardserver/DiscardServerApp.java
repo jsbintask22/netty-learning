@@ -1,12 +1,13 @@
 package cn.jsbintask.netty.server.discardserver;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @author jsbintask@gmail.com
@@ -30,7 +31,14 @@ public class DiscardServerApp {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(new DiscardServerHandler());
+                            ch.pipeline().addLast(new ChannelInboundHandlerAdapter() {
+                                @Override
+                                public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+                                    if (msg instanceof ByteBuf) {
+                                        System.out.println("client: " + ((ByteBuf) msg).toString(StandardCharsets.UTF_8));
+                                    }
+                                }
+                            });
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
